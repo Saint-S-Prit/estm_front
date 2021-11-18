@@ -1,0 +1,181 @@
+<body class="dark-edition">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="black" data-image="../assets/img/sidebar-2.jpg">
+      <div class="logo"><a  class="simple-text logo-normal">
+          Superviseur
+        </a></div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item" style="cursor: pointer;">
+            <a class="nav-link" routerLink="/superviseur">
+              <i class="material-icons">dashboard</i>
+              <p>Tableau de bord</p>
+            </a>
+          </li>
+          <li class="nav-item" style="cursor: pointer;">
+            <a class="nav-link" data-toggle="modal" data-target="#controle">
+              <i class="material-icons">add</i>
+              <p>Planification Controle</p>
+            </a>
+          </li>
+          <li class="nav-item" style="cursor: pointer;">
+            <a class="nav-link" routerLink="/superviseur/message-recu">
+              <i class="material-icons">notifications_none</i>
+              <p>Demande Moratoire <span class="badge">23</span></p>
+            </a>
+          </li>
+          <!--li class="nav-item" style="cursor: pointer;">
+            <a class="nav-link" routerLink="/admin/ajout-etudiant">
+              <i class="material-icons">add</i>
+              <p>Ajout Etudiant</p>
+            </a>
+          </li-->
+          <li class="nav-item" style="cursor: pointer;">
+            <a class="nav-link" routerLink="/superviseur/message-recu">
+              <i class="material-icons">notifications_none</i>
+              <p>Réclamations <span class="badge">17</span></p>
+            </a>
+          </li>
+          <li class="nav-item" style="cursor: pointer;">
+            <a class="nav-link" routerLink="/superviseur/list-payement">
+              <i class="material-icons">list</i>
+              <p>Payement</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+
+      <!-- End Navbar -->
+      <div class="content ">
+        <div class="container-fluid">
+
+          <div class="row">
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">person</i>
+                  </div>
+                  <p class="card-category">Etudiants</p>
+                  <h3 class="card-title">
+                    {{ etudiants.length}}
+                  </h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons text-warning">person</i>
+                    <a class="warning-link">Nombres d'etudiants</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">person</i>
+                  </div>
+                  <p class="card-category">Superviseurs</p>
+                  <h3 class="card-title">{{ superviseurs.length}}</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons text-success">person</i>
+                    <a class="success-link">Nombres de superviseurs</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-danger card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">person</i>
+                  </div>
+                  <p class="card-category">Agents</p>
+                  <h3 class="card-title">{{ agents.length}}</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons text-danger">person</i>
+                    <a class="danger-link">Nombres d'agents</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-info card-header-icon">
+                  <div class="card-icon">
+                    <i class="fa fa-user"></i>
+                  </div>
+                  <p class="card-category">Ndieme</p>
+                  <h3 class="card-title">Diop</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">female</i>Adminstrateur
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+
+
+
+<!--popup controle agent-->
+<div class="modal fade" id="controle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="container-fluid">
+          <form [formGroup]="controleform" (ngSubmit)="addControle()">
+            <div class="card">
+              <div class="card-header card-header-primary">
+                <h4 class="card-title">Planification controle mensuel</h4>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <div class="form-group">
+                        <textarea class="form-control" rows="4" placeholder="message"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-danger pull-right" data-dismiss="modal">
+                    Annuler
+                </button>
+                <button type="submit" class="btn btn-primary pull-right" >
+                  <a style="color: #fff;">
+                    Envoyer
+                  </a>
+                </button>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </form>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+

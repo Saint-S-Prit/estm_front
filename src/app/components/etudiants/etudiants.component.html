@@ -1,0 +1,210 @@
+<div id="etudiant">
+  <body class="dark-edition">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="black" data-image="../assets/img/sidebar-2.jpg">
+      <div class="logo"><a  class="simple-text logo-normal">
+          Etudiant
+        </a></div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item" style="cursor: pointer;">
+            <a class="nav-link" routerLink="/etudiant/history-suivi">
+              <i class="material-icons">dashboard</i>
+              <p>Tableau de bord</p>
+            </a>
+          </li>
+
+          <li class="nav-item" style="cursor: pointer;">
+            <a class="nav-link" data-toggle="modal" data-target="#payement">
+              <p>
+                Payement</p>
+            </a>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Demande<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a class="nav-link" data-toggle="modal" data-target="#reclamation">Reclamation</a></li>
+              <li><a class="nav-link" data-toggle="modal" data-target="#moratoire">Moratoire</a></li>
+            </ul>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link" routerLink="/etudiant/histoy-suivi">
+              Historique
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+
+      <!-- Button trigger modal -->
+
+
+
+
+      <router-outlet></router-outlet>
+
+      <!-- End Navbar -->
+    </div>
+  </div>
+
+</body>
+
+
+
+<!-- popup to payd -->
+<div class="modal fade" id="payement" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="container-fluid">
+          <form [formGroup]="payementform" (ngSubmit)="payement()">
+            <div class="card">
+              <div class="card-header card-header-primary">
+                <h4 class="card-title">Payement</h4>
+                <p class="card-category">Renplir Tous les champs</p>
+              </div>
+              <div class="card-body">
+                      <div class="form-group">
+                        <label class="bmd-label-floating">Somme</label>
+                        <input type="text" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <label class="bmd-label-floating">Mois</label>
+                        <input type="text" class="form-control">
+                      </div>
+                      <div class="form-group" >
+                        <label for="bmd-label-floating">nature:</label>
+                        <select class="form-control"
+                          formControlName="sexe"
+                          id="sexe">
+                          <option value="homme">Mensuel</option>
+                          <option value="femme">Moratoire</option>
+                        </select>
+                      </div>
+                  <button type="submit" class="btn btn-danger pull-right" data-dismiss="modal">
+                      Annuler
+                  </button>
+                  <button type="submit" class="btn btn-primary pull-right" >
+                    <a routerLink="/etudiant/recap" style="color: #fff;">
+                      Payer
+                    </a>
+                  </button>
+                  <div class="clearfix"></div>
+              </div>
+            </div>
+          </form>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--popup reclamation-->
+<div class="modal fade" id="reclamation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="container-fluid">
+          <form [formGroup]="payementform" (ngSubmit)="payement()">
+            <div class="card">
+              <div class="card-header card-header-primary">
+                <h4 class="card-title">Reclamation</h4>
+                <p class="card-category">Remplir Tous les champs</p>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label class="bmd-label-floating">Objet</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <div class="form-group">
+                        <textarea class="form-control" rows="4" placeholder="message"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-danger pull-right" data-dismiss="modal">
+                    Annuler
+                </button>
+                <button type="submit" class="btn btn-primary pull-right" >
+                  <a routerLink="/etudiant/recap" style="color: #fff;">
+                    Payer
+                  </a>
+                </button>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </form>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--popup moratoire-->
+<div class="modal fade" id="moratoire" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="container-fluid">
+          <form [formGroup]="payementform" (ngSubmit)="payement()">
+            <div class="card">
+              <div class="card-header card-header-primary">
+                <h4 class="card-title">Moratoire</h4>
+                <p class="card-category">Remplir Tous les champs</p>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label class="bmd-label-floating">Objet</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <div class="form-group">
+                        <textarea class="form-control" rows="4" placeholder="message"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-danger pull-right" data-dismiss="modal">
+                    Annuler
+                </button>
+                <button type="submit" class="btn btn-primary pull-right" >
+                  <a routerLink="/etudiant/recap" style="color: #fff;">
+                    Payer
+                  </a>
+                </button>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </form>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+

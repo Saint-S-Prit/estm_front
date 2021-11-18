@@ -1,0 +1,184 @@
+<body class="dark-edition">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="black" data-image="../assets/img/sidebar-2.jpg">
+      <div class="logo"><a  class="simple-text logo-normal">
+          Administrateur
+        </a></div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item" style="cursor: pointer;">
+            <a class="nav-link" routerLink="/admin/list-etudiant">
+              <i class="material-icons">dashboard</i>
+              <p>Tableau de bord</p>
+            </a>
+          </li>
+          <li class="nav-item" style="cursor: pointer;">
+            <a class="nav-link" routerLink="/admin/list-etudiant" (click)="getEtudiant()">
+              <i class="material-icons">list</i>
+              <p>Liste Etudiants</p>
+            </a>
+          </li>
+          <li class="nav-item" style="cursor: pointer;">
+            <a class="nav-link" routerLink="/admin/list-etudiant-bloquer" (click)="getEtudiant()">
+              <i class="material-icons">list</i>
+              <p>Liste Etudiants bloqués</p>
+            </a>
+          </li>
+          <!--li class="nav-item" style="cursor: pointer;">
+            <a class="nav-link" routerLink="/admin/ajout-etudiant">
+              <i class="material-icons">add</i>
+              <p>Ajout Etudiant</p>
+            </a>
+          </li-->
+          <li class="nav-item" style="cursor: pointer;">
+            <a class="nav-link" routerLink="/admin/list-superviseur">
+              <i class="material-icons">list</i>
+              <p>Liste Superviseurs</p>
+            </a>
+          </li>
+          <li class="nav-item" style="cursor: pointer;">
+            <a class="nav-link" routerLink="/admin/list-agent">
+              <i class="material-icons">list</i>
+              <p>Liste Agent</p>
+            </a>
+          </li>
+          <li class="nav-item" style="cursor: pointer;">
+            <a class="nav-link" data-toggle="modal" data-target="#filiere">
+              <i class="material-icons">add</i>
+              <p>Ajouter filière</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+
+      <!-- End Navbar -->
+      <div class="content ">
+        <div class="container-fluid">
+
+          <div class="row">
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">person</i>
+                  </div>
+                  <p class="card-category">Etudiants</p>
+                  <h3 class="card-title">
+                    {{ etudiants.length}}
+                  </h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons text-warning">person</i>
+                    <a routerLink="/admin/list-etudiant" class="warning-link">Nombres d'etudiants</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">person</i>
+                  </div>
+                  <p class="card-category">Superviseurs</p>
+                  <h3 class="card-title">{{ superviseurs.length}}</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons text-success">person</i>
+                    <a routerLink="/admin/list-superviseur" class="success-link">Nombres de superviseurs</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-danger card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">person</i>
+                  </div>
+                  <p class="card-category">Agents</p>
+                  <h3 class="card-title">{{ agents.length}}</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons text-danger">person</i>
+                    <a routerLink="/admin/list-agent" class="danger-link">Nombres d'agents</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-info card-header-icon">
+                  <div class="card-icon">
+                    <i class="fa fa-user"></i>
+                  </div>
+                  <p class="card-category">Racky</p>
+                  <h3 class="card-title">Laye</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">female</i>Adminstrateur
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+
+
+<!--
+popup to reclamation
+-->
+<div class="modal fade" id="filiere" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+            <form [formGroup]="filiereform" (ngSubmit)="addFiliere()">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Filière</h4>
+                  <p class="card-category">Remplir le champs</p>
+                </div>
+                <div class="card-body">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Filière</label>
+                          <input type="text" class="form-control" formControlName="libelle">
+                        </div>
+                    <button type="submit" class="btn btn-primary pull-right" data-dismiss="modal">
+                      fermer
+                    </button>
+                     <button type="submit" class="btn btn-primary pull-right">
+                      enregistrer
+                    </button>
+                    <div class="clearfix"></div>
+                </div>
+              </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

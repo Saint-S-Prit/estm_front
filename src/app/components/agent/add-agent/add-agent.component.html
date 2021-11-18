@@ -1,0 +1,130 @@
+<div class="container-fluid">
+  <div class="row">
+    <form [formGroup]="agentform" (ngSubmit)="addAgent()">
+
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">Ajouter Agent</h4>
+            <p class="card-category">Veuillez remplir tous les champs</p>
+          </div>
+          <div class="card-body">
+
+            <div *ngIf="submitted">
+              <div class="alert alert-danger" role="alert" style="font-size: 0.7rem;">
+                <div *ngIf="f.prenom.errors?.required">* Prénom est requis</div>
+                <div *ngIf="f.nom.errors?.minlength || f.nom.errors?.maxlength">* Entre 3 à 20 caractères</div>
+                <div *ngIf="f.email.errors?.required">* email est requis</div>
+                <div *ngIf="f.telephone.errors?.minlength || f.telephone.errors?.maxlength">* betwin 3 and 20</div>
+                <div *ngIf="f.sexe.errors?.required">* sexe est requis</div>
+
+              </div>
+            </div>
+            <!-- div class="row">
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label class="bmd-label-floating">Prenom</label>
+                  <input type="text" class="form-control">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="bmd-label-floating">Username</label>
+                  <input type="text" class="form-control">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="bmd-label-floating">Email address</label>
+                  <input type="email" class="form-control">
+                </div>
+              </div>
+            </div-->
+            <div class="row">
+              <div class="col-md-6">
+                <label class="bmd-label-floating">Entrer prénom</label>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="prenom" formControlName="prenom"
+                    pattern="^(?:[a-zA-Z0-9\s]+)?$" [ngClass]="{ 'is-invalid': submitted && f.prenom.errors }">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="bmd-label-floating">Entrer nom</label>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="nom" formControlName="nom" pattern="^(?:[a-zA-Z0-9\s]+)?$"
+                    [ngClass]="{ 'is-invalid': submitted && f.nom.errors }">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <label class="bmd-label-floating">Email</label>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="email" formControlName="email"
+                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label class="bmd-label-floating">Téléphone</label>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="telephone" formControlName="telephone"
+                    pattern="((\+221|00221)?)((7[75608][0-9]{7}$)|(3[03][98][0-9]{6}$))"
+                    [ngClass]="{ 'is-invalid': submitted && f.telephone.errors }">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label class="bmd-label-floating">Adresse</label>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="adresse" formControlName="adresse"
+                    pattern="^(?:[a-zA-Z0-9\s]+)?$" [ngClass]="{ 'is-invalid': submitted && f.adresse.errors }">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+                <label for="bmd-label-floating">sexe:</label>
+                <div class="form-group">
+                  <select class="form-control" formControlName="sexe" id="sexe"
+                    [ngClass]="{ 'is-invalid': submitted && f.sexe.errors }">
+                    <option disabled>Selection</option>
+                    <option value="homme">Home</option>
+                    <option value="femme">Femme</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>About Me</label>
+                  <div class="form-group">
+                    <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that
+                      two seat Lambo.</label>
+                    <textarea class="form-control" rows="5"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div -->
+            <button type="submit" class="btn btn-primary pull-right">Enregistrer</button>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-profile">
+          <div class="card-avatar">
+            <div id="uploardFile">
+              <img class="img uploardFileImage" src="../assets/img/faces/marc.jpg" />
+            </div>
+          </div>
+          <div class="card-body">
+            <input type="file" class="form-control" placeholder="Photo" id="avatar" (change)="onFileAvatar($event)"
+              [ngClass]="{ 'is-invalid': submitted && f.avatar.errors }">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

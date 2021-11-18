@@ -1,0 +1,21 @@
+h1,
+h2,
+h3,
+h4,
+p {
+  color: #fff;
+}
+
+.title {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#ItemMessageRecu {
+  width: 80%;
+  margin: 0 auto;
+}
+p {
+  font-size: 18px;
+}
